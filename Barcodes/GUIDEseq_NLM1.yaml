@@ -1,0 +1,199 @@
+reference_genome: ../genomes/hg38_only_chrs.fa
+output_folder: NLM1_output
+bwa: bwa
+bedtools: bedtools
+
+demultiplex_min_reads: 10000
+
+undemultiplexed:
+    forward: Undetermined_NLM1_S0_R1_001.fastq.gz
+    reverse: Undetermined_NLM1_S0_R2_001.fastq.gz
+    index1: Undetermined_NLM1_S0_I1_001.fastq.gz
+    index2: Undetermined_NLM1_S0_I2_001.fastq.gz
+
+samples:
+    control:
+        target: 
+        barcode1: CGTACTAG
+        barcode2: TAGATCGC
+        description: control
+        
+    Sample01-CCR5_site_05:
+        target: GCTGCCGCCCAGTGGGACTTNGG
+        barcode1: TAAGGCGA
+        barcode2: TAGATCGC
+        description: CCR5_site_05
+
+    Sample02-CCR5_site_08:
+        target: GGACAGTAAGAAGGAAAAACNGG
+        barcode1: TCCTGAGC
+        barcode2: CTCTCTAT
+        description: CCR5_site_08
+
+    Sample03-CCR5_site_09:
+        target: GGTACCTATCGATTGTCAGGNGG
+        barcode1: TAAGGCGA
+        barcode2: TATCCTCT
+        description: CCR5_site_09
+
+    Sample04-TRAC_site_02:
+        target: GCTGGTACACGGCAGGGTCANGG
+        barcode1: TCCTGAGC
+        barcode2: AGAGTAGA
+        description: TRAC_site_02
+
+    Sample05-TRAC_site_03:
+        target: GAGAATCAAAATCGGTGAATNGG
+        barcode1: TAAGGCGA
+        barcode2: GTAAGGAG
+        description: TRAC_site_03
+
+    Sample06-TRAC_site_04:
+        target: GACACCTTCTTCCCCAGCCCNGG
+        barcode1: TCCTGAGC
+        barcode2: ACTGCATA
+        description: TRAC_site_04
+
+    Sample07-PDCD1_site_05:
+        target: GCCCTGCTCGTGGTGACCGANGG
+        barcode1: TAAGGCGA
+        barcode2: AAGGAGTA
+        description: PDCD1_site_05
+
+    Sample08-PDCD1_site_07:
+        target: GGGGGGTTCCAGGGCCTGTCNGG
+        barcode1: TCCTGAGC
+        barcode2: CTAAGCCT
+        description: PDCD1_site_07
+
+    Sample09-PD1_site_13:
+        target: GCGTGACTTCCACATGAGCGNGG
+        barcode1: TAAGGCGA
+        barcode2: GACATTGT
+        description: PD1_site_13
+
+    Sample10-CTLA4_site_01:
+        target: GCACGTGGCCCAGCCTGCTGNGG
+        barcode1: TCCTGAGC
+        barcode2: ACTGATGG
+        description: CTLA4_site_01
+
+    Sample11-CTLA4_site_02:
+        target: GGCCCAGCCTGCTGTGGTACNGG
+        barcode1: TAAGGCGA
+        barcode2: GTACCTAG
+        description: CTLA4_site_02
+
+    Sample12-AAVS1_site_01:
+        target: GTCACCAATCCTGTCCCTAGNGG
+        barcode1: GGACTCCT
+        barcode2: AGAGTAGA
+        description: AAVS1_site_01
+
+    Sample13-AAVS1_site_03:
+        target: GAGCCACATTAACCGGCCCTNGG
+        barcode1: CGTACTAG
+        barcode2: GTAAGGAG
+        description: AAVS1_site_03
+
+    Sample14-AAVS1_site_04:
+        target: GCTCGGGGACACAGGATCCCNGG
+        barcode1: GGACTCCT
+        barcode2: ACTGCATA
+        description: AAVS1_site_04
+
+    Sample15-PTPN6_site_01:
+        target: GGTGGATGATGGTGCCGTCGNGG
+        barcode1: CGTACTAG
+        barcode2: AAGGAGTA
+        description: PTPN6_site_01
+
+    Sample16-PTPN6_site_02:
+        target: GGGATCAGGTGACCCATATTNGG
+        barcode1: GGACTCCT
+        barcode2: CTAAGCCT
+        description: PTPN6_site_02
+
+    Sample17-PTPN6_site_03:
+        target: GATTTCTATGACCTGTATGGNGG
+        barcode1: CGTACTAG
+        barcode2: GACATTGT
+        description: PTPN6_site_03
+
+    Sample18-CXCR4_site_01:
+        target: GATAACTACACCGAGGAAATNGG
+        barcode1: GGACTCCT
+        barcode2: ACTGATGG
+        description: CXCR4_site_01
+
+    Sample19-CXCR4_site_02:
+        target: GCATTTTCTTCACGGAAACANGG
+        barcode1: CGTACTAG
+        barcode2: GTACCTAG
+        description: CXCR4_site_02
+
+    Sample20-PDCD1_site_08:
+        target: GAGCAGGGCTGGGGAGAAGGNGG
+        barcode1: AGGCAGAA
+        barcode2: TAGATCGC
+        description: PDCD1_site_08
+
+    Sample21-PDCD1_site_10:
+        target: GGAGAAGGTGGGGGGGTTCCNGG
+        barcode1: TAGGCATG
+        barcode2: CTCTCTAT
+        description: PDCD1_site_10
+
+    Sample22-PDCD1_site_11:
+        target: GAAGGTGGCGTTGTCCCCTTNGG
+        barcode1: AGGCAGAA
+        barcode2: TATCCTCT
+        description: PDCD1_site_11
+
+    Sample23-AAVS1_site_07:
+        target: GGCCCCACTGTGGGGTGGAGNGG
+        barcode1: TAGGCATG
+        barcode2: AGAGTAGA
+        description: AAVS1_site_07
+
+    Sample24-AAVS1_site_13:
+        target: GTCCCCTCCACCCCACAGTGNGG
+        barcode1: AGGCAGAA
+        barcode2: GTAAGGAG
+        description: AAVS1_site_13
+
+    Sample25-AAVS1_site_14:
+        target: GGGGCCACTAGGGACAGGATNGG
+        barcode1: TAGGCATG
+        barcode2: ACTGCATA
+        description: AAVS1_site_14
+
+    Sample26-SHP_site_8:
+        target: GTTTGCGACTCTGACAGAGCNGG
+        barcode1: AGGCAGAA
+        barcode2: AAGGAGTA
+        description: SHP_site_8
+
+    Sample27-CBLB_site_04:
+        target: GGCAGAAACCCTGGTGGTCGNGG
+        barcode1: TAGGCATG
+        barcode2: CTAAGCCT
+        description: CBLB_site_04
+
+    Sample28-CBLB_site_06:
+        target: GGATTTCCTCCTCGACCACCNGG
+        barcode1: AGGCAGAA
+        barcode2: GACATTGT
+        description: CBLB_site_06
+
+    Sample29-CBLB_site_09:
+        target: GGGTATTATTGATGCTATTCNGG
+        barcode1: TAGGCATG
+        barcode2: ACTGATGG
+        description: CBLB_site_09
+
+    Sample30-CBLB_site_10:
+        target: GATGCTATTCAGGATGCAGTNGG
+        barcode1: AGGCAGAA
+        barcode2: GTACCTAG
+        description: CBLB_site_10

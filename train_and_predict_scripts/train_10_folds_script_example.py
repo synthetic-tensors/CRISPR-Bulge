@@ -1,3 +1,8 @@
+"""
+This script show an example of how to train the models only on the GUIDE-seq dataset in 10-fold manner.
+"""
+
+
 import random
 
 from train_and_predict_scripts.utilities import TrainModelSpec, train_main

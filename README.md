@@ -1,6 +1,6 @@
 # CRISPR-Bulge
 The code developed for the preprint manuscript:
-[Generating, modeling, and evaluating a large-scale set of CRISPR/Cas9 off-target sites with bulges](URL_TBD)
+[Generating, modeling, and evaluating a large-scale set of CRISPR/Cas9 off-target sites with bulges](https://www.biorxiv.org/content/10.1101/2023.11.01.565099v1)
 
 The code contains multiple options for training models used in the study, including a transfer learning model for CHANGE-seq to GUIDE-seq.
 
@@ -10,18 +10,29 @@ The CRISPR/Cas9 system is a highly accurate gene-editing technique, but it can a
 
 
 # Usage
-```
-The main.py script calls for an example script for training models for GUIDE-seq data.
 
-Datasets for training to be added soon (Require to overcome size limit on GitHub).
+Note: you must install the requirements below before running the code.
 
-More examples are to be added soon.
+1. Unzip the datasets inside the files folder (See README inside the files folder).
+
+2. To run the main script with an example for training models on the GUIDE-seq data in a 10-fold manner, run with the Python command:
 ```
+python main.py
+```
+
+3. To run other example scripts, replace the imported script in `main.py` with the desired script. The available scripts are:
+```
+At folder train_and_predict_scripts folder:
+1. train_10_folds_script_example - the script is currently in the main script. See above.
+2. predict_10_folds_script_example - uses the models trained using the train_10_folds_script_example script to predict on the GUIDE-seq dataset.
+3. predict_on_TrueOT_script - uses the trained models that were used in comparing CRISPR-Net and CRISPR-IP to predict on the TrueOT dataset. Models naming here and in the manuscript are different (See files folder README).
+```
+More examples will be provided soon.
 
 # Requirements:
 The code was tested with:\
 Python interpreter == 3.10.10\
-Python packages required for using CRISPR-Bulge (others versions may work as well):\
+Python packages required for using CRISPR-Bulge (other versions may work as well):\
     numpy==1.23.5\
     pandas==2.0.2\
     scikit-learn==1.2.2\

@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from train_and_predict_scripts.train_script_example import main
+from train_and_predict_scripts.train_10_folds_script_example import main
 
 
 # Enable GPU memory growth

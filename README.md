@@ -22,7 +22,7 @@ python main.py
 
 3. To run other example scripts, replace the imported script in `main.py` with the desired script. The available scripts are:
 ```
-At folder train_and_predict_scripts folder:
+At the train_and_predict_scripts folder:
 1. train_10_folds_script_example - the script is currently in the main script. See above.
 2. predict_10_folds_script_example - uses the models trained using the train_10_folds_script_example script to predict on the GUIDE-seq dataset.
 3. predict_on_TrueOT_script - uses the trained models that were used in comparing CRISPR-Net and CRISPR-IP to predict on the TrueOT dataset. Models naming here and in the manuscript are different (See files folder README).

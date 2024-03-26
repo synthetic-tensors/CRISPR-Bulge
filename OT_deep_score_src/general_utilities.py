@@ -1,7 +1,6 @@
 """
-general utilizes
+general utilities
 """
-
 from concurrent.futures import ThreadPoolExecutor
 import pathlib
 import os
@@ -16,27 +15,10 @@ N_CORES = os.cpu_count() if isinstance(os.cpu_count(), int) else 1
 # ##############paths######################
 HOME_DIR = str(pathlib.Path(__file__).parent.parent.absolute()) + "/"  # project path
 FILES_DIR = HOME_DIR + "files/"
-
-
 DATASETS_PATH = FILES_DIR + "datasets/"
-CHANGE_SEQ_PATH = DATASETS_PATH + "CHANGEseq.xlsx"
-GUIDE_SEQ_PATH = DATASETS_PATH + "GUIDEseq.xlsx"
-
 
 # #################constants##################
 SEED = 10
-
-# SG_RNA = "sgRNA"
-# SG_RNA_SEQ = "Alignment sgRNA"
-# OFF_TARGET = "Alignment off-target"
-# DISTANCE = "Alignment distance"
-# CHROM = "Chromosome"
-# CROM_START_LOCATION = "Location"
-# READS = "reads"
-# LABEL = "label"
-# MISMATCHES = "Alignment Mismatches"
-# BULGES = "Alignment Bulge Size"
-# MAX_DISTANCE = 6
 
 
 SG_RNA = "sgRNA"
@@ -54,10 +36,19 @@ MAX_DISTANCE = 6
 
 DEFAULT_READ_THRESHOLD = 100
 
+
 # TODO: __eq__ is implemented for backward compatibility, consider to remove in future, and also hash
 
 
 class Padding_type(Enum):
+    """
+    Represents padding types for sequence alignment.
+
+    Values:
+        NONE: No padding.
+        GAP: Pad with gap characters.
+    """
+
     NONE = None
     GAP = "gap_pad"
     # ZERO = "zero_pad"
@@ -72,7 +63,44 @@ class Padding_type(Enum):
         return super().__hash__()
 
 
+class Encoding_type(Enum):
+    """
+    Represents encoding types for sgRNA and OTS sequences.
+
+    Values:
+        ONE_HOT: One-hot encoding.
+        CRISPR_NET: CRISPR-Net style encoding.
+        FIXED_SIZE: Fixed-size representation (deprecated).
+    """
+
+    ONE_HOT = "oneHotEncoding"
+    CRISPR_NET = "crisprNetEncoding"
+    FIXED_SIZE = "fixEncoding"  # This is not really in use anymore
+
+    def __str__(self) -> str:
+        return str(self.value)
+
+    def __eq__(self, __o) -> bool:
+        return self is __o or self.value == __o
+
+    def __hash__(self) -> int:
+        return super().__hash__()
+
+
 class Data_trans_type(Enum):
+    """
+    Represents data transformation types.
+
+    Values:
+        NONE: No transformation.
+        LOG1P: Logarithmic (log1p) transformation.
+        LOG1P_MAX: Log1p followed by max scaling.
+        STANDARD: Standard scaling.
+        MAX: Max scaling.
+        BOX_COX: Box-Cox transformation.
+        YEO_JOHNSON: Yeo-Johnson transformation.
+    """
+
     NONE = "no_trans"
     LOG1P = "ln_x_plus_one_trans"
     LOG1P_MAX = "ln_x_plus_one_and_max_trans"
@@ -92,6 +120,14 @@ class Data_trans_type(Enum):
 
 
 class Model_task(Enum):
+    """
+    Represents machine learning task types.
+
+    Values:
+        CLASSIFICATION_TASK: Classification of positive/negative outcomes.
+        REGRESSION_TASK: Regression for predicting numerical values.
+    """
+
     CLASSIFICATION_TASK = "classification"
     REGRESSION_TASK = "regression"
 
@@ -106,12 +142,23 @@ class Model_task(Enum):
 
 
 class Data_type(Enum):
+    """
+    Represents different CRISPR datasets.
+
+    Values include CHANGEseq, GUIDEseq, and others.
+    """
+
     CHANGE_SEQ = "CHANGEseq"
     GUIDE_SEQ = "GUIDEseq"
-    TRUE_OT = "TrueOT"
-    RHAMP_SEQ = "RHAMPseq"
     NEW_GUIDE_SEQ = "NewGUIDEseq"
     FULL_GUIDE_SEQ = "FullGUIDEseq"
+
+    RHAMP_SEQ = "RHAMPseq"  # RHAMP-seq from the CHANGE-seq study 
+    REFINED_TURE_OT = "Refined_TrueOT"
+    CHEN_2017_GUIDE_SEQ = "Chen_2017_GUIDE_seq"
+    TSAI_2015_GUIDE_SEQ = "Tsai_2015_GUIDE_seq"
+    LISTGARTEN_2018_GUIDE_SEQ = "Listgarten_2018_GUIDE_seq"
+    CRISPR_NET = "CrisprNet"
 
     def __str__(self) -> str:
         return str(self.value)
@@ -124,6 +171,12 @@ class Data_type(Enum):
 
 
 class Model_type(Enum):
+    """
+    Represents types of predictive models.
+
+    Values include XGBoost, SVM, MLP, and others.
+    """
+
     XGBOOST = "xgboost"
     SVM = "SVM"
     SVM_LINEAR = "SVM-linear"
@@ -155,8 +208,13 @@ class Model_type(Enum):
 
 class Xgboost_tf_type(Enum):
     """
-    Xgboost "transfer learning" type
+    Represents transfer learning modes for XGBoost models.
+
+    Values:
+        NONE: No transfer learning.
+        ADD, UPDATE: See XGBoost API for details.
     """
+
     NONE = None
     ADD = "add"
     UPDATE = "update"
@@ -173,6 +231,9 @@ class Xgboost_tf_type(Enum):
 
 # ##############general functions###############
 def folder_num_gen():
+    """
+    Generator function to yield incrementing folder numbers as strings.
+    """
     i = 1
     while True:
         yield str(i)
@@ -180,6 +241,15 @@ def folder_num_gen():
 
 
 def generate_next_folder_name(prefix_path):
+    """
+    Generates the next available folder name with a numerical suffix within a specified prefix path.
+
+    Args:
+        prefix_path (str): The base path for the new folder.
+
+    Returns:
+        str: The generated folder path.
+    """
     for folder_num in folder_num_gen():
         folder_name = prefix_path + "/" + str(folder_num)
         if not os.path.exists(folder_name):
@@ -187,6 +257,17 @@ def generate_next_folder_name(prefix_path):
 
 
 def parallelize_dataframe(df, func, n_cores=N_CORES):
+    """
+    Parallelizes the application of a function to a DataFrame across multiple cores.
+
+    Args:
+        df (pd.DataFrame): The input DataFrame.
+        func (function): The function to apply in parallel.
+        n_cores (int, optional): The number of cores to utilize. Defaults to all available cores.
+
+    Returns:
+        pd.DataFrame: The processed DataFrame.
+    """
     if isinstance(n_cores, int):
         df_split = np.array_split(df, n_cores)
         with ThreadPoolExecutor() as executor:

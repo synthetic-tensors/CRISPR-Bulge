@@ -1,3 +1,6 @@
+"""
+This module contains the functions for evaluation of the models
+"""
 import pandas as pd
 import numpy as np
 from OT_deep_score_src.general_utilities import Model_task, SG_RNA, LABEL, READS, BULGES
@@ -8,8 +11,24 @@ from sklearn.metrics import average_precision_score
 
 def measure_clevage_acc(prediction_file_name, models=None, only_bulges=False, only_mismatches=False,
                         model_task=Model_task.REGRESSION_TASK):
+    """
+    Calculates prediction accuracy metrics (AUPR, Pearson, Spearman) for a set of models.
+
+    Args:
+        prediction_file_name (str or pd.DataFrame): Path to a CSV file containing predictions or a
+                                                    DataFrame with the predictions.
+        models (list): List of model names (columns in the predictions data) to evaluate.
+        only_bulges (bool, optional): If True, evaluates only on off-targets with bulges. Defaults to False.
+        only_mismatches (bool, optional): If True, evaluates only on off-targets with mismatches (no bulges).
+                                          Defaults to False.
+        model_task (Model_task, optional): Specifies whether the models are regression or classification based.
+                                           Defaults to Model_task.REGRESSION_TASK.
+
+    Returns:
+        pd.DataFrame: DataFrame containing AUPR, Pearson, and Spearman correlations for each model.
+    """
     if models is None:
-        raise ValueError("models parameter should be None")
+        raise ValueError("models parameter should not be None")
 
     if isinstance(prediction_file_name, str):
         predictions = pd.read_csv(prediction_file_name)
@@ -36,6 +55,25 @@ def measure_clevage_acc(prediction_file_name, models=None, only_bulges=False, on
 
 def measure_clevage_acc_per_fold_scores(prediction_file_name, models=None, only_bulges=False, only_mismatches=False,
                                         model_task=Model_task.REGRESSION_TASK):
+    """
+    Calculates prediction accuracy metrics per fold.
+
+    Args:
+        prediction_file_name (str or pd.DataFrame): Path to a CSV file containing predictions or a
+                                                    DataFrame with the predictions.
+        models (list): List of model names (columns in the predictions data) to evaluate.
+        only_bulges (bool, optional): If True, evaluates only on off-targets with bulges. Defaults to False.
+        only_mismatches (bool, optional): If True, evaluates only on off-targets with mismatches (no bulges).
+                                          Defaults to False.
+        model_task (Model_task, optional): Specifies whether the models are regression or classification based.
+                                           Defaults to Model_task.REGRESSION_TASK.
+
+    Returns:
+        tuple:
+            * folds_auprs (np.array): AUPR scores per fold for each model.
+            * folds_pearsons (np.array): Pearson correlations per fold for each model.
+            * folds_spearmans (np.array): Spearman correlations per fold for each model.
+    """
     if models is None:
         raise ValueError("models parameter should not be None")
 
@@ -75,6 +113,23 @@ def measure_clevage_acc_per_fold_scores(prediction_file_name, models=None, only_
 
 def measure_clevage_acc_per_fold(prediction_file_name, models=None, only_bulges=False, only_mismatches=False,
                                  model_task=Model_task.REGRESSION_TASK):
+    """
+    Calculates average and standard deviation of cleavage prediction accuracy metrics across folds.
+
+    Args:
+        prediction_file_name (str or pd.DataFrame): Path to a CSV file containing predictions or
+                                                    a DataFrame with the predictions.
+        models (list): List of model names (columns in the predictions data) to evaluate.
+        only_bulges (bool, optional): If True, evaluates only on off-targets with bulges. Defaults to False.
+        only_mismatches (bool, optional): If True, evaluates only on off-targets with mismatches (no bulges).
+                                          Defaults to False.
+        model_task (Model_task, optional): Specifies whether the models are regression or classification based.
+                                           Defaults to Model_task.REGRESSION_TASK.
+
+    Returns:
+        pd.DataFrame: DataFrame containing mean and standard deviation of AUPR, Pearson, and Spearman correlations
+        for each model.
+    """
     folds_auprs, folds_pearsons, folds_spearmans = \
         measure_clevage_acc_per_fold_scores(prediction_file_name, models, only_bulges, only_mismatches, model_task)
 
@@ -93,6 +148,22 @@ def measure_clevage_acc_per_fold(prediction_file_name, models=None, only_bulges=
 
 def measure_clevage_acc_per_guide(prediction_file_name, models=None, only_bulges=False, only_mismatches=False,
                                   model_task=Model_task.REGRESSION_TASK):
+    """
+    Calculates prediction accuracy metrics per sgRNA.
+
+    Args:
+        prediction_file_name (str or pd.DataFrame): Path to a CSV file containing predictions or a
+                                                    DataFrame with the predictions.
+        models (list): List of model names (columns in the predictions data) to evaluate.
+        only_bulges (bool, optional): If True, evaluates only on off-targets with bulges. Defaults to False.
+        only_mismatches (bool, optional): If True, evaluates only on off-targets with mismatches (no bulges).
+                                          Defaults to False.
+        model_task (Model_task, optional): Specifies whether the models are regression or classification based.
+                                           Defaults to Model_task.REGRESSION_TASK.
+
+    Returns:
+        pd.DataFrame: DataFrame containing AUPR, Pearson, and Spearman correlations for each model.
+    """
     if models is None:
         raise ValueError("models parameter should be None")
 

@@ -1,0 +1,42 @@
+reference_genome: ../../genomes/hg38_only_chrs.fa
+output_folder: output
+bwa: bwa
+bedtools: bedtools
+
+demultiplex_min_reads: 10000
+
+undemultiplexed:
+    forward: Undetermined_S0_R1_001.fastq.gz
+    reverse: Undetermined_S0_R2_001.fastq.gz
+    index1: Undetermined_S0_I1_001.fastq.gz
+    index2: Undetermined_S0_I2_001.fastq.gz
+samples:
+    control:
+        target: 
+        barcode1: TAGGCATG
+        barcode2: TTCCTGTT
+        description: control
+
+    HEK293_sgRNA1:
+        target: GGGAAAGACCCAGCATCCGTNGG
+        barcode1: TAAGGCGA
+        barcode2: CGTAGGTA
+        description: HEK293_sgRNA1
+
+    HEK293_sgRNA2:
+        target: GAACACAAAGCATAGACTGCNGG
+        barcode1: CGTACTAG
+        barcode2: AGCTAGCG
+        description: HEK293_sgRNA2
+
+    HEK293_sgRNA3:
+        target: GGCCCAGACTGAGCACGTGANGG
+        barcode1: AGGCAGAA
+        barcode2: TCCTGTGC
+        description: HEK293_sgRNA3
+
+    HEK293_sgRNA4:
+        target: GGCACTGCGGCTGGAGGTGGNGG
+        barcode1: TCCTGAGC
+        barcode2: GTAATCTG
+        description: HEK293_sgRNA4

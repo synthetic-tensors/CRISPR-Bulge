@@ -1,0 +1,26 @@
+reference_genome: ../../genomes/hg38_only_chrs.fa
+output_folder: SRR6012045_output
+bwa: bwa
+bedtools: bedtools
+
+demultiplex_min_reads: 10000
+
+undemultiplexed:
+    forward: WT-SpCas9_FANCF-2_GUIDEseq-BK_46_R1.fastq.gz
+    reverse: WT-SpCas9_FANCF-2_GUIDEseq-BK_46_R2.fastq.gz
+    index1: WT-SpCas9_FANCF-2_GUIDEseq-BK_46_I1.fastq.gz
+    index2: WT-SpCas9_FANCF-2_GUIDEseq-BK_46_I2.fastq.gz
+
+samples:
+    # dummy control
+    control:
+        target: 
+        barcode1: AAAAAAAA
+        barcode2: AAAAAAAA
+        description: control
+
+    FANCF-site2_sample-BK_46:
+        target: GCTGCAGAAGGGATTCCATGNGG
+        barcode1: TAGGCATG
+        barcode2: AAGGAGTA
+        description: FANCF-site2_sample-BK_46

@@ -1,0 +1,26 @@
+reference_genome: ../../genomes/hg38_only_chrs.fa
+output_folder: SRR6019796_output
+bwa: bwa
+bedtools: bedtools
+
+demultiplex_min_reads: 10000
+
+undemultiplexed:
+    forward: WT-SpCas9_SOHLH1_sample-BK-88_R1.fastq.gz
+    reverse: WT-SpCas9_SOHLH1_sample-BK-88_R2.fastq.gz
+    index1: WT-SpCas9_SOHLH1_sample-BK-88_I1.fastq.gz
+    index2: WT-SpCas9_SOHLH1_sample-BK-88_I2.fastq.gz
+
+samples:
+    # dummy control
+    control:
+        target: 
+        barcode1: AAAAAAAA
+        barcode2: AAAAAAAA
+        description: control
+
+    SOHLH1_sample-BK-88:
+        target: GCCCTGCTGCCCCAGTTCGANGG
+        barcode1: TAAGGCGA
+        barcode2: TAGATCGC
+        description: SOHLH1_sample-BK-88

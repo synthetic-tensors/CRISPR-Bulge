@@ -303,7 +303,7 @@ def predict_settings(version, setting_number):
 
 def create_model_spec_list(
         version, settings, include_distance_feature, encoding_type,
-        aligned, setting_number):
+        aligned, setting_number, model_types):
     """
     Generates a list of TrainModelSpec objects based on prediction settings.
 
@@ -314,10 +314,15 @@ def create_model_spec_list(
         encoding_type (Encoding_type): Type of encoding to use for sequences.
         aligned (bool): Indicates whether the sequences are aligned.
         setting_number (int): Number specifying the prediction scenario.
+        model_types (tuple of Model_type or None): If specified, predict with model types.
+                                                   Otherwise, predicts with all supported types.
+
 
     Returns:
         list: A list of TrainModelSpec objects, each representing a model configuration.
     """
+    if model_types is None:
+        model_types = [Model_type.C_1, Model_type.C_2, Model_type.C_3]
     train_model_spec_list = []
     for read_threshold_train in settings["read_threshold_train_options"]:
         for sample_weight in settings["sample_weight_options"]:
@@ -329,9 +334,8 @@ def create_model_spec_list(
                     encoding_type=encoding_type, flat_encoding=False,
                     read_threshold=read_threshold_train, aligned=aligned,
                     data_type=settings["train_data_type"],
-                    data_types_to_exclude=settings["data_types_to_exclude"]) for model_type in [
-                        Model_type.C_1, Model_type.C_2, Model_type.C_3]]
-            if setting_number == 1:
+                    data_types_to_exclude=settings["data_types_to_exclude"]) for model_type in model_types]
+            if setting_number == 1 and Model_type.XGBOOST in model_types:
                 train_model_spec_list.append(
                     TrainModelSpec(
                         model_type=Model_type.XGBOOST, predict_distance=False, model_version="4_revision",
@@ -341,7 +345,7 @@ def create_model_spec_list(
                         aligned=aligned, data_type=settings["train_data_type"],
                         data_types_to_exclude=settings["data_types_to_exclude"])
                 )
-            elif setting_number == 16:
+            elif setting_number == 16 and Model_type.XGBOOST in model_types:
                 train_model_spec_list.append(
                     TrainModelSpec(
                         model_type=Model_type.XGBOOST, predict_distance=False, model_version=version,
@@ -356,7 +360,7 @@ def create_model_spec_list(
     return train_model_spec_list
 
 
-def main(version, setting_number):
+def main(version, setting_number, model_types=None):
     """
     Coordinates the prediction workflow.
 
@@ -367,6 +371,8 @@ def main(version, setting_number):
     Args:
         version (str): Model version identifier.
         setting_number (int): Number specifying the prediction scenario.
+        model_types (tuple of Model_type or None): If specified, predict with model types.
+                                                   Otherwise, predicts with all supported types.
 
     Returns:
         pd.DataFrame: The DataFrame containing the test data and predictions.
@@ -380,7 +386,7 @@ def main(version, setting_number):
 
     train_model_spec_list = create_model_spec_list(
         version, settings, include_distance_feature, encoding_type, aligned,
-        setting_number)
+        setting_number, model_types)
 
     test_dataset_df = predict_main(
         train_model_spec_list,
@@ -395,3 +401,6 @@ def main(version, setting_number):
 
 if __name__ == "__main__":
     main(version="5_revision", setting_number=1)
+
+
+    

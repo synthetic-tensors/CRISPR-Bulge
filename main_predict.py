@@ -6,6 +6,7 @@ import tensorflow as tf
 
 import train_and_predict_scripts.predict_config as predict_config
 from train_and_predict_scripts.utilities import ensemble_predict
+from OT_deep_score_src.general_utilities import Model_type
 
 
 def main():
@@ -40,7 +41,8 @@ def main():
     for ensemble_componet_i in range(5):
         for setting_number in (8, 10, 12, 14):
             predict_config.main(
-                version="5_revision_ensemble_{}".format(ensemble_componet_i), setting_number=setting_number)
+                version="5_revision_ensemble_{}".format(ensemble_componet_i), setting_number=setting_number,
+                model_types=(Model_type.C_2, Model_type.C_3))
 
 
 if __name__ == "__main__":

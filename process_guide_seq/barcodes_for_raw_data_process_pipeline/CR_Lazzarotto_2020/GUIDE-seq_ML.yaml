@@ -1,0 +1,226 @@
+reference_genome: ../genomes/hg38_only_chrs.fa
+output_folder: ML_output
+bwa: bwa
+bedtools: bedtools
+
+demultiplex_min_reads: 10000
+
+undemultiplexed:
+    forward: Undetermined_ML_S0_R1_001.fastq.gz
+    reverse: Undetermined_ML_S0_R2_001.fastq.gz
+    index1: Undetermined_ML_S0_I1_001.fastq.gz
+    index2: Undetermined_ML_S0_I2_001_rc.fastq.gz
+
+samples:
+    control:
+        target: 
+        barcode1: AGGCAGAA
+        barcode2: TATCCTCT
+        description: control
+
+    # CCR5_site_11 or CCR5_site_7 - probably CCR5_site_7
+    Sample01-CCR5_site_07: # originally Sample01
+        target: GCAGCATAGTGAGCCCAGAANGG
+        barcode1: TAAGGCGA
+        barcode2: TAGATCGC
+        description: CCR5_site_07
+
+    Sample02-CCR5_site_15: # originally Sample03
+        target: GCTGTGTTTGCGTCTCTCCCNGG
+        barcode1: TCCTGAGC
+        barcode2: CTCTCTAT
+        description: CCR5_site_15
+
+    # CXCR4_site_1 or CXCR4_site_8 - CXCR4_site_8 for sure
+    Sample03-CXCR4_site_08: # originally Sample05
+        target: GTCCCCTGAGCCCATTTCCTNGG
+        barcode1: CTCTCTAC
+        barcode2: CTCTCTAT
+        description: CXCR4_site_08
+
+    Sample04-TRAC_site_01: # originally Sample07
+        target: GTCAGGGTTCTGGATATCTGNGG
+        barcode1: CGTACTAG
+        barcode2: CTCTCTAT
+        description: TRAC_site_01
+    
+    # PDCD1_site_1 or PDCD1_site_2 - probably PDCD1_site_2
+    Sample05-PDCD1_site_02: # originally Sample08
+        target: GCCCTGGCCAGTCGTCTGGGNGG
+        barcode1: TCCTGAGC
+        barcode2: AGAGTAGA
+        description: PDCD1_site_02
+
+    Sample06-PDCD1_site_16: # originally Sample10
+        target: GCTTGTCCGTCTGGTTGCTGNGG
+        barcode1: TAAGGCGA
+        barcode2: GTAAGGAG
+        description: PDCD1_site_16
+
+    Sample07-PTPN6_site_9: # originally Sample11
+        target: GTGGGATCGGAGCAGTTCAGNGG
+        barcode1: TCCTGAGC
+        barcode2: GTAAGGAG
+        description: PTPN6_site_9
+
+    Sample08-CXCR4_site_11: # originally Sample12
+        target: GTACAGGCTGCACCTGTCAGNGG
+        barcode1: TCCTGAGC
+        barcode2: ACTGCATA
+        description: CXCR4_site_11
+
+    Sample09-AAVS1_site_11:  # originally Sample19
+        target: GGTGAGGGAGGAGAGATGCCNGG
+        barcode1: TAAGGCGA
+        barcode2: GACATTGT
+        description: AAVS1_site_11
+
+    Sample10-CCR5_site_14: # originally Sample20
+        target: GGTGACAAGTGTGATCACTTNGG
+        barcode1: CGTACTAG
+        barcode2: TAGATCGC
+        description: CCR5_site_14
+
+    Sample11-B2M_site_02: # originally Sample25
+        target: GCTACTCTCTCTTTCTGGCCNGG
+        barcode1: CTCTCTAC
+        barcode2: ACTGATGG
+        description: B2M_site_02
+
+    Sample12-CXCR4_site_06: # originally Sample26
+        target: GAAGCGTGATGACAAAGAGGNGG
+        barcode1: GGACTCCT
+        barcode2: AGAGTAGA
+        description: CXCR4_site_06
+
+    Sample13-CTLA4_site_09: # originally Sample29
+        target: GGACTGAGGGCCATGGACACNGG
+        barcode1: CAGAGAGG
+        barcode2: TGGATTGT
+        description: CTLA4_site_09
+
+    Sample14-AAVS1_site_02: # originally Sample33
+        target: GTCCCTAGTGGCCCCACTGTNGG
+        barcode1: GGACTCCT
+        barcode2: CATAGTGA
+        description: AAVS1_site_02
+
+    Sample15-PDCD1_site_15: # originally Sample41
+        target: GTTGGAGAAGCTGCAGGTGANGG
+        barcode1: CAGAGAGG
+        barcode2: AGAGTAGA
+        description: PDCD1_site_15
+
+    # not sure
+    # PDCD1_site_3 - GTCTGGGCGGTGCTACAACTNGG
+    # (Sites with less than 7 mismatches: 6
+    #  The mean of the mismatches of those sites: 4.0)
+    # or 
+    # PDCD1_site_4 - GGGCGGTGCTACAACTGGGCNGG
+    # (Sites with less than 7 mismatches: 5
+    #  The mean of the mismatches of those sites: 4.0)
+
+    # SampleXX-PDCD1_site_03: # originally Sample42
+    #     target: GTCTGGGCGGTGCTACAACTNGG
+    #     barcode1: GGACTCCT
+    #     barcode2: GTAAGGAG
+    #     description: PDCD1_site_03
+
+    # PTPN6_site_5 or PTPN6_site_5 - probably PTPN6_site_6
+    Sample16-PTPN6_site_06: # originally Sample45
+        target: GATGCAGAGACCCTGCTCAANGG
+        barcode1: CGTACTAG
+        barcode2: AAGGAGTA
+        description: PTPN6_site_06
+
+    Sample17-LAG3_site_02: # originally Sample49
+        target: GCTGTTTCTGCAGCCGCTTTNGG
+        barcode1: CGTACTAG
+        barcode2: GACATTGT
+        description: LAG3_site_02
+
+    Sample18-CTLA4_site_13: # originally Sample52
+        target: GGGACTCTACATCTGCAAGGNGG
+        barcode1: GGACTCCT
+        barcode2: AAGGAGTA
+        description: CTLA4_site_13
+
+    # PDCD1_site_7 or PDCD1_site_9 - probably PDCD1_site_9
+    Sample19-PDCD1_site_09: # originally Sample53
+        target: GGGGGTTCCAGGGCCTGTCTNGG
+        barcode1: CAGAGAGG
+        barcode2: CTAAGCCT
+        description: PDCD1_site_09
+
+
+    # I could not decide
+    # PDCD1_site_3 - GTCTGGGCGGTGCTACAACTNGG
+    # (Sites with less than 7 mismatches: 1
+    #  The mean of the mismatches of those sites: 0.0)
+    # or
+    # PDCD1_site_4 - GGGCGGTGCTACAACTGGGCNGG
+    # (Sites with less than 7 mismatches: 1
+    #  The mean of the mismatches of those sites: 0.0)
+
+    # SampleXX-PDCD1_site_04: # originally Sample55
+    #     target: GGGCGGTGCTACAACTGGGCNGG
+    #     barcode1: TAGGCATG
+    #     barcode2: ACTGCATA
+    #     description: PDCD1_site_04
+    
+    # the fastq files are quite small but I left it
+    Sample20-LAG3_site_10: # originally Sample58
+        target: GGGCTGCAGGGGAGCTGGGCNGG
+        barcode1: TAGGCATG
+        barcode2: CTAAGCCT
+        description: LAG3_site_10
+
+    # LAG3_site_5 or LAG3_site_6 - probably LAG3_site_5
+    Sample21-LAG3_site_05: # originally Sample67
+        target: GGTCCCGGTGGTGTGGGCCCNGG
+        barcode1: GGACTCCT
+        barcode2: GTACCTAG
+        description: LAG3_site_05
+
+
+    # I could not decide
+    # AAVS1_site_6 - GCAAACATGCTGTCCTGAAGNGG
+    # (Sites with less than 7 mismatches: 1
+    #  The mean of the mismatches of those sites: 0.0)
+    # or
+    # AAVS1_site_8 - GCTGTCCTGAAGTGGACATANGG
+    # (Sites with less than 7 mismatches: 1
+    #  The mean of the mismatches of those sites: 0.0)
+
+    # SampleXX-AAVS1_site_06: # originally Sample69
+    #     target: GATGCTATTCAGGATGCAGTNGG
+    #     barcode1: AGGCAGAA
+    #     barcode2: GTACCTAG
+    #     description: AAVS1_site_06
+
+    Sample22-LAG3_site_01: # originally Sample71
+        target: GATGTGGGAGGCTCAGTTCCNGG
+        barcode1: CTCTCTAC
+        barcode2: CTAAGCCT
+        description: LAG3_site_01
+
+    # CXCR4_site_5 or CXCR4_site_7 - probably CXCR4_site_7
+    Sample23-CXCR4_site_07: # originally Sample74
+        target: GAAGAAACTGAGAAGCATGANGG
+        barcode1: TAGGCATG
+        barcode2: TATCCTCT
+        description: CXCR4_site_07
+
+    Sample24-LAG3_site_09: # originally Sample76
+        target: GAAGGCTGAGATCCTGGAGGNGG
+        barcode1: TAGGCATG
+        barcode2: CGCGATAT
+        description: LAG3_site_09
+    
+    # it might be LAG3_site_8? because I'm not sure it  LAG3_site_09 anymore as LAG3_site_09 was already found in the ML file
+    # the fastq files are quite small but I left it
+    # SampleXX-LAG3_site_09: # originally Sample78
+    #     target: GAAGGCTGAGATCCTGGAGGNGG
+    #     barcode1: TAGGCATG
+    #     barcode2: AAGGAGTA
+    #     description: LAG3_site_09

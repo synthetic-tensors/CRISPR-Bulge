@@ -1,0 +1,1 @@
+Files resulted from applying the GUIDE-seq pipeline on the raw data.

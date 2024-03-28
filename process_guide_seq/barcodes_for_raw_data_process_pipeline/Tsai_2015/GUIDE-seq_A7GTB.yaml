@@ -1,0 +1,49 @@
+reference_genome: ../../genomes/hg38_only_chrs.fa
+output_folder: output
+bwa: bwa
+bedtools: bedtools
+
+demultiplex_min_reads: 10000
+
+undemultiplexed:
+    forward: Undetermined_S0_R1_001.fastq.gz
+    reverse: Undetermined_S0_R2_001.fastq.gz
+    index1: Undetermined_S0_I1_001.fastq.gz
+    index2: Undetermined_S0_I2_001.fastq.gz
+samples:
+    # # dummy control
+    # control:
+    #     target: 
+    #     barcode1: AAAAAAAA
+    #     barcode2: AAAAAAAA
+    #     description: control
+
+    FANCF:
+        target: GGAATCCCTTCTGCAGCACCNGG
+        barcode1: GGACTCCT
+        barcode2: CTCTCTAT
+        description: FANCF
+
+    RNF2:
+        target: GTCATCTTAGTCATTACCTGNGG
+        barcode1: GGACTCCT
+        barcode2: TAGATCGC
+        description: RNF2
+
+    # tru_VEGFA_site_1:
+    #     target: GTGGGGGGAGTTTGCTCCNGG
+    #     barcode1: TAGGCATG
+    #     barcode2: TATCCTCT
+    #     description: tru_VEGFA_site_1
+
+    # tru_VEGFA_site_3:
+    #     target: GAGTGAGTGTGTGCGTGNGG
+    #     barcode1: TAGGCATG
+    #     barcode2: AGAGTAGA
+    #     description: tru_VEGFA_site_3
+    
+    # tru_EMX1:
+    #     target: GTCCGAGCAGAAGAAGAANGG
+    #     barcode1: CTCTCTAC
+    #     barcode2: GTAAGGAG
+    #     description: tru_EMX1

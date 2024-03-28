@@ -1,0 +1,3 @@
+[submodule "Barcodes/SWOffinder"]
+	path = Barcodes/SWOffinder
+	url = https://github.com/OrensteinLab/SWOffinder.git

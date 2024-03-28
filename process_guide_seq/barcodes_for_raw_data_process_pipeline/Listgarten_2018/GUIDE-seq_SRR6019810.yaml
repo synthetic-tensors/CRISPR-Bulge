@@ -1,0 +1,26 @@
+reference_genome: ../../genomes/hg38_only_chrs.fa
+output_folder: SRR6019810_output
+bwa: bwa
+bedtools: bedtools
+
+demultiplex_min_reads: 10000
+
+undemultiplexed:
+    forward: WT-SpCas9_IL1F10_sample-BK-76_R1.fastq.gz
+    reverse: WT-SpCas9_IL1F10_sample-BK-76_R2.fastq.gz
+    index1: WT-SpCas9_IL1F10_sample-BK-76_I1.fastq.gz
+    index2: WT-SpCas9_IL1F10_sample-BK-76_I2.fastq.gz
+
+samples:
+    # dummy control
+    control:
+        target: 
+        barcode1: AAAAAAAA
+        barcode2: AAAAAAAA
+        description: control
+
+    IL1F10_sample-BK-76:
+        target: GCAGCCAGTACAGCTCACCANGG
+        barcode1: GGACTCCT
+        barcode2: AGAGTAGA
+        description: IL1F10_sample-BK-76

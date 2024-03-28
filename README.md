@@ -66,6 +66,10 @@ options:
                         train spesific model type can be either 'c_1', 'c_2', 'c_3', or 'xgboost'.Default is None, and all models types are trained
 ```
 - You can modify the code to support new datasets you are willing to train on.
+- The Python script `main_train.py` contains example for training on entire dataset without the use of the command-line interface (`train_1_fold.train_handler` function). You can run it using:
+```
+python main_train.py
+```
 
 
 2. For training on an entire dataset in a cross-validation manner, use the command-line interface:
@@ -90,6 +94,11 @@ options:
   -r, --train_regression
                         Train regression task models.
 ```
+- The Python script `main_train.py` contains example for training on entire dataset in a cross-validation manner without the use of the command-line interface (`train_folds.train_handler` function). You can run it using:
+```
+python main_train.py
+```
+
 
 ## Positional effect and embedding visualizations
 The folder `evaluations` contains the notebooks `position_effect.ipynb` and `learned_representation_analysis.ipynb` for generating the interpretability visualizations we used in the manuscript.

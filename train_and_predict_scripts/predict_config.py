@@ -401,6 +401,3 @@ def main(version, setting_number, model_types=None):
 
 if __name__ == "__main__":
     main(version="5_revision", setting_number=1)
-
-
-    

@@ -104,7 +104,7 @@ python main_train.py
 The folder `evaluations` contains the notebooks `position_effect.ipynb` and `learned_representation_analysis.ipynb` for generating the interpretability visualizations we used in the manuscript.
 
 ## Processing the GUIDE-seq data
-The folder `process_guide_seq` contains the DNA barcodes for demultiplexing the raw sequencing data of the GUIDE-seq experiments and some instructions for generating the datasets. Please read the README file in the folder.
+The folder `process_guide_seq` contains the DNA barcodes, accession codes, and raw data links required for the GUIDE-seq pipeline, and some instructions for generating the datasets. Please read the README file in the folder.
 
 # Requirements:
 The code was tested with:\

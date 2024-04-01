@@ -1,7 +1,7 @@
 # Datasets
 You must unzip the `datasets` folder from `datasets.zip`.
 
-Since the zipped file was uploaded using Git LFS, you need to clone the Repository using Git LFS.
+Since the zipped file was uploaded using Git LFS, you need to clone the repository using Git LFS. Otherwise, you might download a corrupted file.
 
 Notes:
 - The FullGUIDEseq dataset combines the GUIDEseq (from the CHANGE-seq study) and NewGUIDEseq datasets.

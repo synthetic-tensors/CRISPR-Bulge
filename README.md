@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10902356.svg)](https://doi.org/10.5281/zenodo.10902356)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10902445.svg)](https://doi.org/10.5281/zenodo.10902445)
 
 Use the GitHub repository [CRISPR-Bulge](https://github.com/OrensteinLab/CRISPR-Bulge) for the latest version and to download LFS files.
 
